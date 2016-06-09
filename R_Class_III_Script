@@ -1,0 +1,207 @@
+I#################
+## R_CLASS_III ##
+#################
+
+#In R III we're going to look at some of R's simple tools that allow you to go deeper with your data analysis, digging and visualisation
+
+#In this class we'll look at:
+#1. Creating a project
+#2. Built in data in R
+#3. Basic descriptive statistics
+#4. Beyond summary statistics
+#5. Further practice
+
+
+##########################
+##1. Creating a project ##
+##########################
+
+#We’re going to create a project in R
+#This is where all your data and scripts will be held
+#Think of it like a folder where everything related to one project is kept
+
+#Before we do that let’s check where this session of R is being run from
+#Let's open R and check our working directory
+#Type this into the console
+getwd()
+
+#What is returned is the “working directory”
+#This is the address on the computer where the files are stored
+#Why do directories matter in R?
+
+#We could change our working directory with setwd()
+#But in this case let’s set the working directory when we start a new project
+#In a project you can keep all your scripts, files and analysis in one place
+
+#Let’s follow these steps together…
+#Look in the top right corner for a small blue icon - a cube with an R inside
+#Click on it and select the first option “New Project”
+#Then select “New Directory” from the pop-up dialogue box
+#Select “Empty Project”
+#In the next dialogue box name your project
+#We’re going to call the project “R Class III”
+#We also want to check the address or directory where the project will be stored
+#This is shown in the “Save a subdirectory of…” box
+#In the box is the location on your computer where the project will be saved
+#You can change it now if needed
+#Let’s all set our working directory to R Class on the Bureaublad (aka Desktop) 
+
+#You can of course move the location later but it can cause complications
+
+##########################
+##2. Built in data in R ##
+##########################
+
+#R comes with a number of built in packages for analysis
+#This means you can run simple analysis on practice data sets
+
+#To see how R gives you the ability to analyse your data simply and effectively we're going to use one it's built in data packages
+
+#To see a full list of the packages
+data()
+
+#We're going to use airquality dataset for this class
+#Open it up and take a look…
+airquality
+
+#Let’s also find out more about the dataset
+?airquality
+
+#If we were going to use this in a story about air pollution what might we want to know?
+
+###################################
+##3. Descriptive statistics in R ##
+###################################
+
+#We've already looked at what to do when you have a data set and you need to clean it or join data to a table
+#What about when you want to explore the data itself?
+
+#The first step is to look at the descriptive statistics
+#What are descriptive statistics?
+
+#The summary function gives you basic descriptive statistics 
+??summary
+
+#Let’s look at the summary statistics for the Wind column in the airquality dataset
+summary(airquality$Wind)
+
+#Let’s look through the details of what is returned from this query…
+#What might you want to use these for?
+
+#Let’s run the summary analysis for the entire dataset
+summary(airquality)
+
+#There are some unusual results in there
+#Any ideas why we are getting the summary stats for month and day?
+
+#Looking at the results, what might you use from this to describe your data? 
+#Let’s come up with a few top lines from the data for a story…
+
+
+#################################
+##4. Beyond summary statistics ##
+#################################
+
+#Let’s load in a new dataset from my github page
+#We’re going to look at data on smokers
+#Props to Mike Marin on this dataset…
+
+#Let’s read in the data
+#Note we’re reading in a table this time
+lung <- read.table("LungCapData.txt", header=T)
+
+#What’s different about this data to that of before?
+
+#Let’s check out the data headers
+names(lung)
+
+#Of course we can also get the summary statistics for the entire table as well
+summary(lung)
+#What is different in this summary table to the first one we created?
+
+#If we want to summarize a categorical variable, Smoke, this is done in a summary table
+#It’s summarized by a frequency or proportion
+table(lung$Smoke)
+
+#So we know the number of smokers and non-smokers
+#Let’s get the total number of people in the survey
+length(lung$Smoke)
+
+#Let’s use this to calculate the proportion of smokers and non-smokers
+table(lung$Smoke)/725
+
+#Or we can do it like this…
+table(lung$Smoke)/length(lung$Smoke)
+#Why does this also work?
+
+#Let’s look at this based on the gender breakdown
+table(lung$Smoke, lung$Gender)
+
+#Let’s look at working with the numeric variables in the data set
+#We’ll consider the appropriate number to use looking at the average…
+mean(lung$LungCap)
+
+#We can also trim the mean if we are concerned that there may be outliers
+mean(lung$LungCap, trim=0.10)
+
+#What can you tell by comparing the results of the mean and the trimmed mean?
+
+#Let’s look at the median as well
+median(lung$LungCap)
+
+#Based on these results what number might you want to report in your story?
+
+#Let’s take a further look at some of the further simple stats functions..
+
+#To calculate the variance use var
+var(lung$LungCap)
+#When might we use this?
+
+#Let’s get the standard deviation
+sd(lung$LungCap)
+
+#Let’s look at the correlation between lung capacity and age
+cor(lung$LungCap, lung$Age)
+#How can we interpret the result?
+
+#What other variables appear to have a strong correlation?
+
+
+########################
+##5. FURTHER PRACTICE ##
+########################
+
+#There are plenty of built in datasets to play with in R
+#They can be really useful for practicing and building up confidence
+#To find built in datasets in R try this...
+data()
+
+#If you’re into machine learning, there are some great exercises on Kaggle
+#The Titanic machine learning exercise with R is one of my favourites
+#https://www.youtube.com/watch?v=32o0DnuRjfg
+
+#You should also look into packages like httr for API calls
+
+#To find further help with R…
+
+#RStudio has a range of great tipsheets
+# www.rstudio.com/resources/cheatsheets/
+
+#Check out r-bloggers for hints and tips
+
+#The O'Reilly Cookbook is a helpful resource
+
+#Hadley Wickham, Chief Scientist at RStudio, is a font of knowledge for all things R - find him on Twitter @hadleywickham
+
+###################
+## KEEP IN TOUCH ##
+###################
+
+#Find me on Twitter @caelainnbarr
+#Or on email caelainn.barr@theguardian.com
+
+###################
+## Caelainn Barr ##
+## The Guardian  ##
+## @caelainnbarr ##
+###################
